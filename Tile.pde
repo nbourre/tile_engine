@@ -3,12 +3,7 @@ public static class Tile {
 	static PImage tileSetTexture;
 	static int tileWidth = 32;
 	static int tileHeight = 32;
-  static Rectangle tileRectangle;
   
-  public void setRectangle (Rectangle r) {
-    tileRectangle = r;
-  }
-
 	public static int getTileWidth() {
 		return tileWidth;
 	}
@@ -41,4 +36,5 @@ public static class Tile {
 
 	public static void setTileSetTexture(PImage tileSetTexture) {
 		Tile.tileSetTexture = tileSetTexture;
-	}}
+	}
+}

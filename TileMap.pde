@@ -3,9 +3,7 @@ public class TileMap {
 	int mapWidth = 50;
 	int mapHeight = 50;
 	
-	
 	public TileMap() {
-		super();
 		
 		for (int y = 0; y < mapHeight; y++) {
 			
@@ -21,7 +19,7 @@ public class TileMap {
 		
 		generateTest();
 	}
-	
+
 	public MapRow getRow(int rowIndex) {
 		return rows.get(rowIndex);
 	}
