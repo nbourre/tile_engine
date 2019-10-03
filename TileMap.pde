@@ -45,67 +45,71 @@ public class TileMap {
 	private void generateTest() {
 		// Début de la création
 
-		//rows.get(0).columns.get(0).setTileID(5);
+		//rows.get(0).columns.get(0).addBaseTile(5);
+    
+    for (MapRow row : rows) {
+      for (MapCell cell : row.columns) {
+        cell.addBaseTile(0);
+      }
+    }
 
-		rows.get(0).columns.get(3).setTileID(2); //<>//
-		rows.get(0).columns.get(4).setTileID(2);
-		rows.get(0).columns.get(5).setTileID(2);
-		rows.get(0).columns.get(6).setTileID(2);
-		rows.get(0).columns.get(7).setTileID(2);
+		rows.get(0).columns.get(3).addBaseTile(2); //<>//
+		rows.get(0).columns.get(4).addBaseTile(2);
+		rows.get(0).columns.get(5).addBaseTile(2);
+		rows.get(0).columns.get(6).addBaseTile(2);
+		rows.get(0).columns.get(7).addBaseTile(2);
 
-		rows.get(1).columns.get(3).setTileID(1);
-		rows.get(1).columns.get(4).setTileID(1);
-		rows.get(1).columns.get(5).setTileID(1);
-		rows.get(1).columns.get(6).setTileID(1);
-		rows.get(1).columns.get(7).setTileID(1);
+		rows.get(1).columns.get(3).addBaseTile(1);
+		rows.get(1).columns.get(4).addBaseTile(1);
+		rows.get(1).columns.get(5).addBaseTile(1);
+		rows.get(1).columns.get(6).addBaseTile(1);
+		rows.get(1).columns.get(7).addBaseTile(1);
 
-		rows.get(2).columns.get(2).setTileID(3);
-		rows.get(2).columns.get(3).setTileID(3);
-		rows.get(2).columns.get(4).setTileID(3);
-		rows.get(2).columns.get(5).setTileID(3);
-		rows.get(2).columns.get(6).setTileID(3);
+		rows.get(2).columns.get(2).addBaseTile(3);
+		rows.get(2).columns.get(3).addBaseTile(3);
+		rows.get(2).columns.get(4).addBaseTile(3);
+		rows.get(2).columns.get(5).addBaseTile(3);
+		rows.get(2).columns.get(6).addBaseTile(3);
 		
-		rows.get(2).columns.get(7).setTileID(1);
-		rows.get(3).columns.get(2).setTileID(3);
-		rows.get(3).columns.get(3).setTileID(1);
-		rows.get(3).columns.get(4).setTileID(1);
-		rows.get(3).columns.get(5).setTileID(2);
+		rows.get(2).columns.get(7).addBaseTile(1);
+		rows.get(3).columns.get(2).addBaseTile(3);
+		rows.get(3).columns.get(3).addBaseTile(1);
+		rows.get(3).columns.get(4).addBaseTile(1);
+		rows.get(3).columns.get(5).addBaseTile(2);
 		
-		rows.get(3).columns.get(6).setTileID(2);
-		rows.get(3).columns.get(7).setTileID(2);
-		rows.get(4).columns.get(2).setTileID(3);
-		rows.get(4).columns.get(3).setTileID(1);
-		rows.get(4).columns.get(4).setTileID(1);
+		rows.get(3).columns.get(6).addBaseTile(2);
+		rows.get(3).columns.get(7).addBaseTile(2);
+		rows.get(4).columns.get(2).addBaseTile(3);
+		rows.get(4).columns.get(3).addBaseTile(1);
+		rows.get(4).columns.get(4).addBaseTile(1);
 
-		rows.get(4).columns.get(5).setTileID(2);
-		rows.get(4).columns.get(6).setTileID(2);
-		rows.get(4).columns.get(7).setTileID(2);
-		rows.get(5).columns.get(2).setTileID(3);
-		rows.get(5).columns.get(3).setTileID(1);
+		rows.get(4).columns.get(5).addBaseTile(2);
+		rows.get(4).columns.get(6).addBaseTile(2);
+		rows.get(4).columns.get(7).addBaseTile(2);
+		rows.get(5).columns.get(2).addBaseTile(3);
+		rows.get(5).columns.get(3).addBaseTile(1);
 		
-		rows.get(5).columns.get(4).setTileID(1);
-		rows.get(5).columns.get(5).setTileID(2);
-		rows.get(5).columns.get(6).setTileID(2);
-		rows.get(5).columns.get(7).setTileID(2);
+		rows.get(5).columns.get(4).addBaseTile(1);
+		rows.get(5).columns.get(5).addBaseTile(2);
+		rows.get(5).columns.get(6).addBaseTile(2);
+		rows.get(5).columns.get(7).addBaseTile(2);
 
 		// Fin de la création pour itération 1
 
-		rows.get(3).columns.get(5).setTileID(30);
-		rows.get(4).columns.get(5).setTileID(27);
-		rows.get(5).columns.get(5).setTileID(28);
+		rows.get(3).columns.get(5).addBaseTile(30);
+		rows.get(4).columns.get(5).addBaseTile(27);
+		rows.get(5).columns.get(5).addBaseTile(28);
 
-		rows.get(3).columns.get(6).setTileID(25);
-		rows.get(5).columns.get(6).setTileID(24);
+		rows.get(3).columns.get(6).addBaseTile(25);
+		rows.get(5).columns.get(6).addBaseTile(24);
 
-		rows.get(3).columns.get(7).setTileID(31);
-		rows.get(4).columns.get(7).setTileID(26);
-		rows.get(5).columns.get(7).setTileID(29);
+		rows.get(3).columns.get(7).addBaseTile(31);
+		rows.get(4).columns.get(7).addBaseTile(26);
+		rows.get(5).columns.get(7).addBaseTile(29);
 
-		rows.get(4).columns.get(6).setTileID(104);
+		rows.get(4).columns.get(6).addBaseTile(104);
 
 		// Fin de la création pour itération 2
-
-
 
 	}
 

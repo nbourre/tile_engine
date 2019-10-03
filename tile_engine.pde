@@ -98,14 +98,14 @@ void display () {
         // Va chercher le rectangle de la tuile à afficher
         Rectangle srcRect = Tile.getSourceRectangle(tileId);
         
-        // Méthode non efficace, trop de mémoire en Processing
-        PImage currentTile = Tile.getTileSetTexture().get(
-            (int)srcRect.location.x, (int)srcRect.location.y,
-            (int)srcRect.w, (int)srcRect.h);
-  
-        image(currentTile,
-            (x * Tile.tileWidth) - offsetX, positionY
-        );
+        
+        image (Tile.getTileSetTexture(),
+              (x * Tile.tileWidth) - offsetX, positionY,
+              (int)srcRect.w, (int)srcRect.h,
+              (int)srcRect.location.x, (int)srcRect.location.y,
+              (int)srcRect.location.x + (int)srcRect.w, (int)srcRect.location.y + (int)srcRect.h
+              );
+        
       }
     }
   }

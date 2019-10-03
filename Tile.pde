@@ -27,6 +27,7 @@ public static class Tile {
 	public static Rectangle getSourceRectangle(int tileIndex) {
     int tileY = tileIndex / (tileSetTexture.width / tileWidth);
     int tileX = tileIndex % (tileSetTexture.width / tileWidth);
+    
     tileRect.setWH(tileWidth, tileHeight);
     tileRect.setXY(tileX * tileWidth, tileY * tileHeight);
 
