@@ -3,8 +3,8 @@ int previousTime;
 int deltaTime;
 
 TileMap map;
-int carreLargeur = 5;
-int carreHauteur = 5;
+int carreLargeur = 10;
+int carreHauteur = 10;
 
 int tileSize = 32;
 Rectangle tileRectangle = new Rectangle();
@@ -17,6 +17,7 @@ void setup () {
   map = new TileMap();
   
   Tile.setTileSetTexture(loadImage("data/part1_tileset.png"));
+  Tile.setSourceRectangle(tileRectangle);
   
   println(map.getMapInString());
 }
@@ -39,13 +40,33 @@ void draw () {
 void update(int delta) {
   if (keyPressed) {
     if (keyCode == LEFT) {
-      Camera.setLocation(Math.max(Camera.getLocation().x - 2, Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+      Camera.setLocation(
+        Math.max(Camera.getLocation().x - 2,
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
         ,Camera.getLocation().y);
     }
     
     if (keyCode == RIGHT) {
-      Camera.setLocation(Math.max(Camera.getLocation().x + 2, Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+      Camera.setLocation(
+        Math.max(Camera.getLocation().x + 2,
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
         ,Camera.getLocation().y);    
+    }
+    
+    if (keyCode == UP) {
+      Camera.setLocation(
+        Camera.getLocation().x,
+        Math.max(Camera.getLocation().y - 2,
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+      );
+    }
+    
+    if (keyCode == DOWN) {
+      Camera.setLocation(
+        Camera.getLocation().x,
+        Math.max(Camera.getLocation().y + 2,
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+      );    
     }
   }
 }
@@ -74,7 +95,7 @@ void display () {
     for (int x = 0; x < carreLargeur; x++) {
       
       // Va chercher le rectangle de la tuile à afficher
-      Rectangle srcRect = Tile.getSourceRectangle(map.getRow(y + firstY).getCell(x + firstX).getTileID(), tileRectangle);
+      Rectangle srcRect = Tile.getSourceRectangle(map.getRow(y + firstY).getCell(x + firstX).getTileID());
       
       PImage currentTile = Tile.getTileSetTexture().get((int)srcRect.location.x, (int)srcRect.location.y,
           (int)srcRect.w, (int)srcRect.h);

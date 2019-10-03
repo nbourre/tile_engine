@@ -1,8 +1,12 @@
 public static class Tile {
-	//static final int TILESIZE = 32;
 	static PImage tileSetTexture;
 	static int tileWidth = 32;
 	static int tileHeight = 32;
+  static Rectangle tileRect;
+  
+  public static void setSourceRectangle(Rectangle tileRect) {
+    Tile.tileRect = tileRect;
+  }
   
 	public static int getTileWidth() {
 		return tileWidth;
@@ -20,14 +24,14 @@ public static class Tile {
 		Tile.tileHeight = tileHeight;
 	}
 
-	public static Rectangle getSourceRectangle(int tileIndex, Rectangle r) {
+	public static Rectangle getSourceRectangle(int tileIndex) {
 		int tileY = tileIndex / (tileSetTexture.width / tileWidth);
 		int tileX = tileIndex % (tileSetTexture.width / tileWidth);
 
-    r.setWH(tileWidth, tileHeight);
-    r.setXY(tileX * tileWidth, tileY * tileHeight);
+    tileRect.setWH(tileWidth, tileHeight);
+    tileRect.setXY(tileX * tileWidth, tileY * tileHeight);
 
-	  return r;
+	  return tileRect;
 	}
 
 	public static PImage getTileSetTexture() {
