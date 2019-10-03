@@ -3,10 +3,9 @@ int previousTime;
 int deltaTime;
 
 TileMap map;
-int carreLargeur = 10;
-int carreHauteur = 10;
+int carreLargeur = 15;
+int carreHauteur = 15;
 
-int tileSize = 32;
 Rectangle tileRectangle = new Rectangle();
 
 void setup () {
@@ -16,7 +15,7 @@ void setup () {
   
   map = new TileMap();
   
-  Tile.setTileSetTexture(loadImage("data/part1_tileset.png"));
+  Tile.setTileSetTexture(loadImage("data/part2_tileset.png"));
   Tile.setSourceRectangle(tileRectangle);
   
   println(map.getMapInString());
@@ -42,14 +41,14 @@ void update(int delta) {
     if (keyCode == LEFT) {
       Camera.setLocation(
         Math.max(Camera.getLocation().x - 2,
-                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * Tile.tileWidth))
         ,Camera.getLocation().y);
     }
     
     if (keyCode == RIGHT) {
       Camera.setLocation(
         Math.max(Camera.getLocation().x + 2,
-                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * Tile.tileWidth))
         ,Camera.getLocation().y);    
     }
     
@@ -57,7 +56,7 @@ void update(int delta) {
       Camera.setLocation(
         Camera.getLocation().x,
         Math.max(Camera.getLocation().y - 2,
-                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * Tile.tileHeight))
       );
     }
     
@@ -65,7 +64,7 @@ void update(int delta) {
       Camera.setLocation(
         Camera.getLocation().x,
         Math.max(Camera.getLocation().y + 2,
-                  Math.min(0, (map.getMapWidth() - carreLargeur) * tileSize))
+                  Math.min(0, (map.getMapWidth() - carreLargeur) * Tile.tileHeight))
       );    
     }
   }
@@ -76,33 +75,38 @@ void update(int delta) {
 */
 void display () {
   background(0);
-  PVector firstSquare = new PVector(Camera.getLocation().x / (float)tileSize,
-    Camera.getLocation().y / (float)tileSize);
+  PVector firstSquare = new PVector(Camera.getLocation().x / (float)Tile.tileWidth,
+    Camera.getLocation().y / (float)Tile.tileHeight);
   
   int firstX = (int) firstSquare.x;
   int firstY = (int) firstSquare.y;
   
   // Le petit offset entre le bord de la caméra et la dimension d'une tuile
-  PVector squareOffset = new PVector(Camera.getLocation().x % tileSize,
-    Camera.getLocation().y % tileSize);
+  PVector squareOffset = new PVector(Camera.getLocation().x % Tile.tileWidth,
+    Camera.getLocation().y % Tile.tileHeight);
     
   int offsetX = (int) squareOffset.x;
   int offsetY = (int) squareOffset.y;
   
   for (int y = 0; y < carreHauteur; y++) {
-    int positionY = (y * tileSize) - offsetY;
+    int positionY = (y * Tile.tileHeight) - offsetY;
    //<>//
     for (int x = 0; x < carreLargeur; x++) {
       
-      // Va chercher le rectangle de la tuile à afficher
-      Rectangle srcRect = Tile.getSourceRectangle(map.getRow(y + firstY).getCell(x + firstX).getTileID());
-      
-      PImage currentTile = Tile.getTileSetTexture().get((int)srcRect.location.x, (int)srcRect.location.y,
-          (int)srcRect.w, (int)srcRect.h);
+      for (int tileId : map.getRow(y + firstY).getCell(x + firstX).getBaseTiles()) {
+        
+        // Va chercher le rectangle de la tuile à afficher
+        Rectangle srcRect = Tile.getSourceRectangle(tileId);
+        
+        // Méthode non efficace, trop de mémoire en Processing
+        PImage currentTile = Tile.getTileSetTexture().get(
+            (int)srcRect.location.x, (int)srcRect.location.y,
+            (int)srcRect.w, (int)srcRect.h);
   
-      image(currentTile,
-          (x * tileSize) - offsetX, positionY
-          );
+        image(currentTile,
+            (x * Tile.tileWidth) - offsetX, positionY
+        );
+      }
     }
   }
 
